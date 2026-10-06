@@ -388,7 +388,7 @@ body {
 }
 
 .login-logo {
-    max-width: 100px;
+    max-width: 300px;
     margin-bottom: 20px;
 }
 
@@ -420,4 +420,58 @@ body {
     .shopping-stats-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+/* Universal Table Styling for all Dashboard Tables */
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.expense-table th, 
+.expense-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #E2E8F0);
+    font-size: 14px;
+}
+
+.expense-table th {
+    background-color: var(--lavender-light, #F3E8FF);
+    color: var(--text-main, #4A5568);
+    font-weight: 600;
+}
+
+.expense-table tbody tr:hover {
+    background-color: #F8FAFC;
+}
+
+
+/* Logout Button */
+.logout-btn {
+    margin-top: auto; /* Pushes it to the bottom of the sidebar */
+    margin-bottom: 20px;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #4A5568;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logout-btn:hover {
+    background: #FEE2E2;
+    color: #EF4444;
+    border-color: #FCA5A5;
 }

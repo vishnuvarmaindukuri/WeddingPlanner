@@ -74,6 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const refreshBtn = document.getElementById('refresh-btn');
     if(refreshBtn) refreshBtn.addEventListener('click', fetchExpenses);
+
+    // Logout Logic
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            // 1. Clear the session
+            sessionStorage.removeItem('isLoggedIn');
+            
+            // 2. Hide the dashboard and show the login screen
+            document.getElementById('main-dashboard').style.display = 'none';
+            document.getElementById('login-screen').style.display = 'flex';
+            
+            // 3. Clear the forms and password fields for security
+            if(document.getElementById('login-form')) document.getElementById('login-form').reset();
+            
+            // 4. Wipe the local data variables so it doesn't stay in memory
+            expensesSheetData = [];
+            shoppingSheetData = [];
+        });
+    }
+
 });
 
 function showDashboard() {
