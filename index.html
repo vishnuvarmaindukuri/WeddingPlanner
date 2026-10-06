@@ -54,6 +54,12 @@
                     <li class="nav-item" data-filter="Wedding">
                         <span class="dot wedding-dot"></span> Wedding (Night)
                     </li>
+                    <li class="nav-item" data-filter="Mansari Shopping">
+                        <span class="dot" style="background: #e91e63;"></span> Mansari Shopping
+                    </li>
+                    <li class="nav-item" data-filter="Vishnu Shopping">
+                        <span class="dot" style="background: #2196f3;"></span> Vishnu Shopping
+                    </li>
                 </ul>
             </nav>
         </aside>
@@ -81,6 +87,25 @@
                 <div class="stat-card">
                     <h3>Total Paid so Far</h3>
                     <p class="stat-value" id="stat-paid">₹0</p>
+                </div>
+            </div>
+            <!-- Shopping Summary Fields -->
+            <div class="stats-grid shopping-stats-grid">
+                <div class="stat-card">
+                    <h3>Mansari Shopping Estimate</h3>
+                    <p id="stat-mansari-est">₹0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Mansari Shopping Actual</h3>
+                    <p id="stat-mansari-act">₹0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Vishnu Shopping Estimate</h3>
+                    <p id="stat-vishnu-est">₹0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Vishnu Shopping Actual</h3>
+                    <p id="stat-vishnu-act">₹0</p>
                 </div>
             </div>
 
@@ -117,18 +142,52 @@
                     </table>
                 </div>
             </section>
+
+            <!-- Shopping Expenses Table -->
+            <section class="table-card" style="margin-top: 30px;">
+                <h2 class="section-title">Shopping Expenses</h2>
+                <div class="table-responsive">
+                    <table class="expense-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Category</th>
+                                <th>Item</th>
+                                <th>Estimated</th>
+                                <th>Actual</th>
+                                <th>Paid</th>
+                                <th>Paid By</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shopping-table-body">
+                            <tr><td colspan="7" class="loading-text">Fetching shopping data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             
 
               <!-- Expense Submission Form -->
             <section class="form-card">
                 <h2 class="section-title">Add New Expense</h2>
                 <form id="expense-form" class="expense-grid-form">
+                    <!-- NEW: Pick the Destination Sheet -->
+                    <div class="form-group">
+                        <label>Expense Type</label>
+                        <select id="form-target-sheet">
+                            <option value="Expenses">Wedding Event</option>
+                            <option value="Shopping">Shopping</option>
+                        </select>
+                    </div>
+                    
                     <div class="form-group">
                         <label>Event</label>
                         <select id="form-event" required>
                             <option value="Haldi">Haldi (Morning - Venue A)</option>
                             <option value="Sangeeth">Sangeeth (Night - Venue A)</option>
                             <option value="Wedding">Wedding (Night - Venue B)</option>
+                            <option value="Mansari Shopping">Mansari Shopping</option>
+                            <option value="Vishnu Shopping">Vishnu Shopping</option>
                         </select>
                     </div>
 
