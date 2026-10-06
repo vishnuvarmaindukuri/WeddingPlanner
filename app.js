@@ -195,16 +195,14 @@ function renderStats() {
         ? shoppingSheetData 
         : shoppingSheetData.filter(item => (item.event || "").toLowerCase() === currentFilter.toLowerCase());
 
-    // Main 3 Totals: Combine both lists for the grand total
-    const combinedData = [...filteredEvents, ...filteredShopping];
-    
-    const totalEstimated = combinedData.reduce((sum, item) => sum + (Number(item.estimated_cost) || 0), 0);
-    const totalActual = combinedData.reduce((sum, item) => {
+    // 1. MAIN TOTALS (Now strictly using filteredEvents, excluding Shopping)
+    const totalEstimated = filteredEvents.reduce((sum, item) => sum + (Number(item.estimated_cost) || 0), 0);
+    const totalActual = filteredEvents.reduce((sum, item) => {
         const actual = Number(item.actual_cost) || 0;
         const estimated = Number(item.estimated_cost) || 0;
         return sum + (actual > 0 ? actual : estimated);
     }, 0);
-    const totalPaid = combinedData.reduce((sum, item) => sum + (Number(item.paid_amount) || 0), 0);
+    const totalPaid = filteredEvents.reduce((sum, item) => sum + (Number(item.paid_amount) || 0), 0);
 
     const estEl = document.getElementById('stat-estimated');
     const actEl = document.getElementById('stat-actual');
@@ -214,8 +212,7 @@ function renderStats() {
     if(actEl) actEl.textContent = `₹${totalActual.toLocaleString('en-IN')}`;
     if(paidEl) paidEl.textContent = `₹${totalPaid.toLocaleString('en-IN')}`;
 
-    // Shopping Specific Totals
-    // This finds any item in the shopping tab where the event name contains "Mansari" or "Vishnu"
+    // 2. SHOPPING SPECIFIC TOTALS
     const mansariShopping = filteredShopping.filter(item => (item.event || '').toLowerCase().includes('mansari'));
     const vishnuShopping = filteredShopping.filter(item => (item.event || '').toLowerCase().includes('vishnu'));
 
@@ -245,6 +242,9 @@ function renderStats() {
     const vActEl = document.getElementById('stat-vishnu-act');
     if(vActEl) vActEl.textContent = `₹${vAct.toLocaleString('en-IN')}`;
 
+    // 3. PAYMENT BREAKDOWN BY PERSON
+    // (Combining both arrays here so you still know exactly who paid what across the entire wedding & shopping combined)
+    const combinedData = [...filteredEvents, ...filteredShopping];
     renderPaymentSummary(combinedData); 
 }
 
